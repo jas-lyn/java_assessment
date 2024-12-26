@@ -24,6 +24,9 @@ public class Student
     public void enrollToCourse( Course course )
     {
         //TODO implement this method
+        if (!courses.contains(course)) {
+            courses.add(course);                    //add a course to the list of courses a student is enrolled in
+        }
     }
 
     public void registerApprovedCourse( Course course )
@@ -34,7 +37,7 @@ public class Student
     public boolean isCourseApproved( String courseCode )
     {
         //TODO implement this method
-        return false;
+        return approvedCourses.containsKey(courseCode);         //check if a course with the given course code exists in the approvedCourses map
     }
 
     // CHALLENGE IMPLEMENTATION: Read README.md to find instructions on how to solve. 
@@ -47,6 +50,11 @@ public class Student
     public boolean isAttendingCourse( String courseCode )
     {
         //TODO implement this method
+        for (Course course : courses) {
+            if (course.getCode().equals(courseCode)) {          //check if a student is currently attending a course with the specified course code
+                return true;
+            }
+        }
         return false;
     }
 
@@ -60,7 +68,7 @@ public class Student
     public List<Course> getApprovedCourses()
     {
         //TODO implement this method
-        return null;
+        return new ArrayList<>(approvedCourses.values());
     }
 
     @Override
@@ -68,4 +76,5 @@ public class Student
     {
         return "Student {" + super.toString() + "}";
     }
+
 }

@@ -27,12 +27,21 @@ public class StudentService
     public boolean isSubscribed( String studentId )
     {
         //TODO implement this method
-        return false;
+        return students.containsKey(studentId);
     }
 
     public void showSummary()
     {
         //TODO implement
+        System.out.println("Student Summary:");
+        for (String studentId : students.keySet()) {
+            Student student = students.get(studentId);
+            System.out.println("Student ID: " + student.getId() + ", Name: " + student.getName());
+            System.out.println("Enrolled Courses:");
+            for (Course course : student.getApprovedCourses()) {
+                System.out.println(" - " + course);
+            }
+        }
     }
 
     public void enrollToCourse( String studentId, Course course )
@@ -42,6 +51,5 @@ public class StudentService
             students.get( studentId ).enrollToCourse( course );
         }
     }
-
 
 }
